@@ -73,22 +73,30 @@ class ViewController: UIViewController {
         }
         else if sender.tag == 19
         {
-            if operation == 14
+            if operation == 14 //divide
             {
-                
+                label.text = String(previousNumber / numberOnScreen)
             }
-            else if operation == 15
+            else if operation == 15 //multiply
             {
-                
+                label.text = String(previousNumber * numberOnScreen)
             }
-            else if operation == 16
+            else if operation == 16 //subtract
             {
-                
+                label.text = String(previousNumber - numberOnScreen)
             }
-            else if operation == 17
+            else if operation == 17 //add
             {
-                
+                label.text = String(previousNumber + numberOnScreen)
             }
+        }
+        else if sender.tag == 18
+        {
+            label.text = ""
+            previousNumber = 0
+            numberOnScreen = 0
+            operation = 0
+            total = 0
         }
     }
     
