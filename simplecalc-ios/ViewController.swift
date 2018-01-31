@@ -12,9 +12,11 @@ class ViewController: UIViewController {
     
     var numberOnScreen:Double = 0
     var previousNumber:Double = 0
-    var total:Double = 0
+    var averageTotal:Double = 0
+    var averageCount:Double = 1
     var performingMath = false
     var operation = 0;
+    var count = 1;
     
     
     @IBOutlet weak var label: UILabel!
@@ -42,10 +44,13 @@ class ViewController: UIViewController {
             if sender.tag == 11 //count
             {
                 label.text = "count"
+                count = count + 1
             }
             if sender.tag == 12  //avg
             {
                 label.text = "avg"
+                averageTotal = averageTotal + previousNumber
+                averageCount = averageCount + 1
             }
             if sender.tag == 13 //fact
             {
@@ -89,6 +94,28 @@ class ViewController: UIViewController {
             {
                 label.text = String(previousNumber + numberOnScreen)
             }
+            else if operation == 11 //count
+            {
+                label.text = String(count)
+            }
+            else if operation == 12
+            {
+                averageTotal = averageTotal + numberOnScreen
+                label.text = String(averageTotal / averageCount)
+            }
+            else if operation == 13
+            {
+                var total:Double = previousNumber
+                var number:Double = previousNumber - 1
+                total = total * number
+                number = number - 1
+                while number > 0
+                {
+                    total = total * number
+                    number = number - 1
+                }
+                label.text = String(total)
+            }
         }
         else if sender.tag == 18
         {
@@ -96,7 +123,9 @@ class ViewController: UIViewController {
             previousNumber = 0
             numberOnScreen = 0
             operation = 0
-            total = 0
+            count = 1
+            averageTotal = 0
+            averageCount = 1
         }
     }
     
